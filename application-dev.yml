@@ -1,6 +1,16 @@
 spring:
   profiles:
     active: dev
+server:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      idle-timeout: 10000
+      maximum-pool-size: 15
+    platform: mysql
+    username: root
+    password: NavaBrind@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
 eureka:
   client:
     registerWithEureka: true
