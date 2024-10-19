@@ -2,7 +2,7 @@ spring:
   application:
     name: no-crm
 server:
-  port: 8001
+  port: 8080
   jpa:
     show-sql: false
     properties:
