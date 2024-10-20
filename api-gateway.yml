@@ -4,13 +4,93 @@ server:
 spring:
   application:
     name: api-gateway
- 
+  http:
+    multipart:
+      max-file-size: 400Mb
+      max-request-size: 1000Mb
+  cloud:
+    stream:
+      bindings:
+        apiLogRecordChannel:
+          destination: apiLogRecordChannel
+          contentType: application/json
+          mappedRequestHeaders: "*"
 
 zuul:
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
   addProxyHeaders: true
   routes:
-   
+    account-management:
+      path: /account-management/**
+      serviceId: account-management
+      fallbackUri: /fallback/account-management
+
     connector-service:
-      path: /no-crm/**
-      serviceId: no-crm
+      path: /connector-service/**
+      serviceId: connector-service
+    editor:
+      path: /editor-service/**
+      serviceId: editor
+    merger:
+      path: /merger-service/**
+      serviceId: merger
+    document-management:
+      path: /document-management/**
+      serviceId: document-management
+    connector-gateway:
+      path: /connector-gateway/**
+      serviceId: connector-gateway
+    local-file-connector:
+      path: /local-file-connector/**
+      serviceId: local-file-connector
+    google-drive-connector:
+      path: /google-drive-connector/**
+      serviceId: google-drive-connector
+    mail-connector:
+      path: /mail-connector/**
+      serviceId: mail-connector
+    search:
+      path: /search/**
+      serviceId: search
+    web-socket-gateway:
+      path: /web-socket-gateway/**
+      serviceId: web-socket-gateway
+    email-management-service:
+      path: /email-management-service/**
+      serviceId: email-management-service
+    microsoft-dynamics:
+      path: /microsoft-dynamics/**
+      serviceId: microsoft-dynamics
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Expose all actuator endpoints, adjust as needed
+  endpoint:
+    health:
+      show-details: always # Show detailed health information
+
+contiq:
+  api-gateway:
+    sso:
+      pluginRedirect: https://dev.contiq.com/sso/verify
+      webAppRedirect: https://dev.contiq.com
+
+loaderio:
+  config: loaderio-f1255a28ec11970cff084eef5a9862ce
+
+blockViewCalls: 66.102.8, 66.102.9, 74.125.210
+
+cors:
+  allowed:
+    origins: https://dev.contiq.com;http://localhost:4200
+
+# Fallback Providers Configuration
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 # Adjust timeout as needed
