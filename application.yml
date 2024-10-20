@@ -1,5 +1,5 @@
 eureka:
-  environment: dev
+  environment: 
   client:
     registerWithEureka: true
     fetchRegistry: true
