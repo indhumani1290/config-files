@@ -1,3 +1,13 @@
+spring:
+  profiles:
+    active: 
+  hateoas:
+    use-hal-as-default-json-media-type: true
+  sleuth:
+    sampler:
+      percentage: 1.0
+  
+  
 eureka:
   environment: 
   client:
@@ -20,3 +30,9 @@ contiq:
       stage: "{'test+account1@contiq.com': '929/contiq1231/1921', 'test+account2@contiq.com': '930/contiq1232/1922', 'test+account3@contiq.com': '931/contiq1233/1923'}"
       app: "{'test+account1@contiq.com': '726/contiq1231/1740', 'test+account2@contiq.com': '727/contiq1232/1741', 'test+account3@contiq.com': '728/contiq1233/1742'}"
       del: "{'test+account1@contiq.com': '48/contiq1231/59', 'test+account2@contiq.com': '49/contiq1232/60', 'test+account3@contiq.com': '50/contiq1233/61'}"
+ribbon:
+  eureka:
+   enabled: true
+  ServerListRefreshInterval: 20
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
