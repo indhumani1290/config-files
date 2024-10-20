@@ -4,17 +4,7 @@ server:
 spring:
   application:
     name: api-gateway
-  http:
-    multipart:
-      max-file-size: 400Mb
-      max-request-size: 1000Mb
-  cloud:
-    stream:
-      bindings:
-        apiLogRecordChannel:
-          destination: apiLogRecordChannel
-          contentType: application/json
-          mappedRequestHeaders: "*"
+ 
 
 zuul:
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
