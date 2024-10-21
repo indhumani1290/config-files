@@ -8,7 +8,7 @@ spring:
       percentage: 1.0
 logging:
   file:
-    name: app.log
+    name: /var/www/html/Java/app.log
   
 eureka:
   environment: 
